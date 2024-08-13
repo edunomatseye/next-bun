@@ -8,3 +8,8 @@ const server = Bun.serve({
     return new Response("Hollup!");
   },
 });
+
+const buf = new ArrayBuffer(8);
+const dv = new DataView(buf);
+dv.setUint8(0, 3);
+dv.getUint8(0);
