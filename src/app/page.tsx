@@ -1,21 +1,25 @@
 "use client";
 
 import Image from "next/image";
-import figlet from "figlet";
 import { useState } from "react";
 
 export default function Home() {
   const [text, setText] = useState("");
+  const [error, setError] = useState("");
   const [font, setFont] = useState("Standard");
-  const [result, setResult] = useState("");
+  const [result, setResult] = useState<Timer>();
 
   const generateFiglet = () => {
     try {
-      const output = figlet.textSync("text");
+      alert("text");
+      const output = setTimeout(() => {
+        console.log("Sleeping for 2 sec");
+      }, 2000);
       setResult(output);
+      return output;
     } catch (error) {
       console.error("Error generating figlet:", error);
-      setResult("Error occurred");
+      setError("Error occurred");
     }
   };
 
@@ -59,7 +63,7 @@ export default function Home() {
             {/* ...other font options */}
           </select>
           <button onClick={generateFiglet}>Generate</button>
-          <pre>hello.. {result}</pre>
+          <pre>hello.. {error}</pre>
         </div>
       </div>
 
