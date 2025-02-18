@@ -23,9 +23,22 @@ const readableStream = new ReadableStream({
   },
 });
 
-for await (const chunk of readableStream) {
-  console.log(chunk);
+async function processStream() {
+  for await (const chunk of readableStream.toString()) {
+    console.log(chunk);
+  }
 }
+
+processStream();
+
+Bun.serve({
+  fetch(req) {
+    const url = new URL(req.url);
+    if (url.pathname === "/") return new Response("Home page!");
+    if (url.pathname === "/blog") return new Response("Blog!");
+    return new Response("404!");
+  },
+});
 
 Bun.serve({
   fetch(req) {
