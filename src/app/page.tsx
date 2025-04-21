@@ -62,6 +62,11 @@ export default function Home() {
             <option value="Standard">Standard</option>
             {/* ...other font options */}
           </select>
+          <select value={font} onChange={(e) => setFont(e.target.value)}>
+            {/* Add font options here */}
+            <option value="Standard">Standard</option>
+            {/* ...other font options */}
+          </select>
           <button onClick={generateFiglet}>Generate</button>
           <pre>hello.. {error}</pre>
         </div>
