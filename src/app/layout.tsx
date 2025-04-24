@@ -16,7 +16,19 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <header className="w-full bg-gray-900 text-white py-4 px-8 flex items-center justify-between">
+          <nav className="flex gap-6">
+            <a href="/" className="hover:underline">Home</a>
+            <a href="/projects" className="hover:underline">Projects</a>
+            {/* Add more links as you add more pages */}
+          </nav>
+          <span className="font-bold tracking-wide">spacx</span>
+        </header>
+        <main>
+          {children}
+        </main>
+      </body>
     </html>
   );
 }
