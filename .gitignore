@@ -37,3 +37,7 @@ next-env.d.ts
 
 # .gitignore
 ./src/generated/prisma
+
+
+.nx/cache
+.nx/workspace-data
