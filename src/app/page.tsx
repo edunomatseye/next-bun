@@ -8,9 +8,6 @@ export default function Home() {
   const [error, setError] = useState("");
   const [font, setFont] = useState("Standard");
   const [result, setResult] = useState<Timer>();
-  const [projectName, setProjectName] = useState("");
-  const [projectError, setProjectError] = useState("");
-  const [projectSuccess, setProjectSuccess] = useState("");
 
   const generateFiglet = () => {
     try {
@@ -23,32 +20,6 @@ export default function Home() {
     } catch (error) {
       console.error("Error generating figlet:", error);
       setError("Error occurred");
-    }
-  };
-
-  const handleAddProject = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setProjectError("");
-    setProjectSuccess("");
-    if (!projectName.trim()) {
-      setProjectError("Project name is required");
-      return;
-    }
-    try {
-      const res = await fetch("/api/projects", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name: projectName }),
-      });
-      const data = await res.json();
-      if (res.ok) {
-        setProjectSuccess("Project added successfully!");
-        setProjectName("");
-      } else {
-        setProjectError(data.error || "Failed to add project");
-      }
-    } catch (err) {
-      setProjectError("Failed to add project");
     }
   };
 
@@ -99,22 +70,6 @@ export default function Home() {
           <button onClick={generateFiglet}>Generate</button>
           <pre>hello.. {error}</pre>
         </div>
-      </div>
-
-      <div className="my-8 w-full max-w-md">
-        <h2 className="text-xl font-bold mb-2">Add Project</h2>
-        <form onSubmit={handleAddProject} className="flex gap-2">
-          <input
-            type="text"
-            placeholder="Project name"
-            value={projectName}
-            onChange={e => setProjectName(e.target.value)}
-            className="border px-2 py-1 rounded w-full"
-          />
-          <button type="submit" className="bg-blue-600 text-white px-4 py-1 rounded">Add</button>
-        </form>
-        {projectError && <p className="text-red-500 mt-2">{projectError}</p>}
-        {projectSuccess && <p className="text-green-600 mt-2">{projectSuccess}</p>}
       </div>
 
       <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
