@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/db";
+import validator from "validator"; // Add this import
 
 export async function GET() {
   try {
@@ -16,14 +17,20 @@ export async function GET() {
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { name } = body;
+    let { name } = body;
 
-    if (!name) {
+    if (
+      !name ||
+      typeof name !== "string" ||
+      !validator.isLength(name, { min: 1, max: 100 })
+    ) {
       return NextResponse.json(
-        { error: "Project name is required" },
+        { error: "Project name is required and must be 1-100 characters." },
         { status: 400 }
       );
     }
+
+    name = validator.escape(name); // Sanitize input
 
     const project = await prisma.project.create({
       data: { name },
