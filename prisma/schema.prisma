@@ -18,12 +18,14 @@ datasource db {
 }
 
 model User {
-  id           Int      @id @default(autoincrement())
-  email        String   @unique
+  id           Int       @id @default(autoincrement())
+  email        String    @unique
   name         String?
-  passwordHash String   // Store hashed password for authentication
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  passwordHash String
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  projects     Project[] // Relation: A user can have many projects
 }
 
 model Project {
@@ -32,4 +34,7 @@ model Project {
   description String?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+
+  userId      Int      // Foreign key to User
+  user        User     @relation(fields: [userId], references: [id])
 }
