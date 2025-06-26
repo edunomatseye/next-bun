@@ -27,9 +27,9 @@ const config: runtime.GetPrismaClientConfig = {
     },
     "config": {
       "generatedFileExtension": "ts",
+      "importFileExtension": "ts",
       "runtime": "nodejs",
       "moduleFormat": "esm",
-      "importFileExtension": "ts",
       "engineType": "library"
     },
     "binaryTargets": [
@@ -50,7 +50,7 @@ const config: runtime.GetPrismaClientConfig = {
     "db"
   ],
   "activeProvider": "sqlite",
-  "postinstall": false,
+  "postinstall": true,
   "inlineDatasources": {
     "db": {
       "url": {
