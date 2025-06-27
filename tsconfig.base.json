@@ -8,7 +8,8 @@
     "skipLibCheck": true,
     "baseUrl": "./",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "auth": ["libs/auth/src/index.ts"]
     }
   },
   "exclude": ["node_modules"]
