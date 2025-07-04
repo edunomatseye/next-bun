@@ -10,4 +10,6 @@ export function App() {
   return <RouterProvider router={router} />;
 }
 
+export { routeTree };
+
 export default App;

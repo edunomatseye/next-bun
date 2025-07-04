@@ -12,6 +12,7 @@
     "@prisma/adapter-pg": "^5.18.0",
     "@prisma/client": "^6.6.0",
     "@tanstack/react-router": "^1.123.0",
+    "@tanstack/start": "^1.120.20",
     "@types/validator": "^13.15.1",
     "babel-plugin-react-compiler": "^19.1.0-rc.1",
     "next": "^15.3.1",
