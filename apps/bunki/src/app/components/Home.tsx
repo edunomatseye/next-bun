@@ -26,7 +26,9 @@ export default function Home() {
             required
           />
         </label>
-        <button type="submit" style={{ marginLeft: 8 }}>Get User Data</button>
+        <button type="submit" style={{ marginLeft: 8 }}>
+          Get User Data
+        </button>
       </form>
     </div>
   );
